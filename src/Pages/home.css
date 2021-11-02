@@ -1,0 +1,23 @@
+.mainContainerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.inputLogin {
+    margin: 5vh 0;
+    padding: 2px 1rem;
+    height: 2rem;
+    width: 20vw;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.inputLoginBtn {
+    width: 10rem;
+    height: 3rem;
+    margin: 2vh 0;
+    cursor: pointer;
+}
