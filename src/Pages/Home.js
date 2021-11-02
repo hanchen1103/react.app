@@ -40,11 +40,13 @@ const Home = () => {
     <div className={"mainContainer"}>
       <div className={"mainContainerBack"}>
         <div className={"mainContainerContent"}>
+          <h3 style={{alignSelf:'flex-start',marginLeft:'19vw'}}> Username</h3>
           <input
             className={"inputLogin"}
             placeholder="USERNAME"
             onChange={(value) => updateUsername(value)}
           />
+          <h3 style={{alignSelf:'flex-start',marginLeft:'19vw',marginTop:'5vh'}}>Password</h3>
           <input
             className={"inputLogin"}
             placeholder="PASSWORD"

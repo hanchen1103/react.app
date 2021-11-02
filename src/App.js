@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Home from "./Pages/Home";
 import Message from "./Pages/Message";
@@ -13,7 +12,7 @@ import UploadPage from "./Pages/Upload";
 function App() {
   return (
     <Router>
-      <div id={'App'} style={{margin:'20vh 20vw',padding:'20px'}}>
+      <div id={'App'}>
         <Switch>
           <Route exact path="/">
             <Home />

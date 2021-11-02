@@ -1,18 +1,38 @@
 import React, { useState } from "react";
-import { Upload, message, Button } from "antd";
-// import { InboxOutlined } from "@ant-design/icons";
-import { UploadOutlined } from "@ant-design/icons";
+import { Upload, message, Button, Popover } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+
+const { Dragger } = Upload;
 
 const UploadPage = () => {
   const [uploading, setUploading] = useState(false);
   const [name, setName] = useState("");
   const [msg, setMsg] = useState("");
   const [fileList, setFileList] = useState([]);
+  const content = (
+    <div>
+      <p>You must choose one image!</p>
+    </div>
+  );
+  const onChange = (info) => {
+    const { status } = info.file;
+    if (status !== "uploading") {
+      console.log(info.file, info.fileList);
+    }
+    if (status === "done") {
+      message.success(`${info.file.name} file add successfully.`);
+    } else if (status === "error") {
+      message.error(`${info.file.name} file add failed.`);
+    }
+  };
+  const onDrop = (e) => {
+    console.log("Dropped files", e.dataTransfer.files);
+  };
   const uploadData = () => {
     let formdata = new FormData();
     formdata.append("name", name);
     formdata.append("msg", msg);
-    fileList.forEach((item, index) => formdata.append("file", item));
+    formdata.append("file", fileList);
     setUploading(true);
     fetch("", {
       mode: "cors",
@@ -25,21 +45,21 @@ const UploadPage = () => {
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        if (json.code && json.code === 0) message.success("Upload success!");
-        else message.error("Upload failed!");
+        if (json.code && json.code === 0) message.success("Post success!");
+        else message.error("Post failed!");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const changeFileList = (e) => {
-    console.log(e);
+  const onRemove = () => {
+    setFileList([]);
   };
-  const uploadStatus = (e) => {
-    setFileList(e);
+  const beforeUpload = (file) => {
+    setFileList(file);
+    console.log(file);
     return false;
   };
-
   return (
     <div
       style={{
@@ -48,69 +68,69 @@ const UploadPage = () => {
         flexDirection: "column",
         alignItems: "center",
         Width: "60vw",
-        Height: "40vh",
+        Height: "80vh",
       }}
     >
       <div>
+        <h3> True name </h3>
         <input
           className={"inputLogin"}
+          style={{ margin: 0 }}
           onChange={(value) => setName(value.target.value)}
           placeholder="TRUE NAME"
         />
       </div>
-      <div>
+      <div style={{ margin: "5vh 0" }}>
+        <h3>Messages</h3>
         <input
           className={"inputLogin"}
+          style={{ margin: 0 }}
           onChange={(value) => {
             setMsg(value.target.value);
           }}
           placeholder="MSGS YOU WANT TO SAY"
         />
       </div>
-      <div style={{ width: "50%" }}>
-        <h2 style={{}}> Upload pic</h2>
-        <div
-          style={{
-            width: "100%",
-            justifyContent: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+      <div style={{ width: "40vw" }}>
+        <h3> Upload Avatar</h3>
+
+        <Dragger
+          onRemove={() => onRemove()}
+          onChange={(info) => onChange(info)}
+          onDrop={(e) => onDrop(e)}
+          multiple={false}
+          beforeUpload={(file) => beforeUpload(file)}
         >
-          <Upload
-            maxCount={1}
-            fileList={fileList}
-            onRemove={() => setFileList([])}
-            beforeUpload={(e) => uploadStatus(e)}
-            onChange={(e) => changeFileList(e)}
-          >
-            <Button icon={<UploadOutlined />}>Select File</Button>
-          </Upload>
-          <Button
-            type="primary"
-            onClick={() => uploadData()}
-            disabled={fileList.length === 0}
-            style={{ marginTop: "2vh" }}
-            loading={uploading}
-          >
-            {uploading ? "Uploading" : "Start Upload"}
-          </Button>
-        </div>
+          <p className="ant-upload-drag-icon">
+            <InboxOutlined />
+          </p>
+          <p className="ant-upload-text">
+            Click or drag file to this area to upload
+          </p>
+          <p className="ant-upload-hint">
+            Support for a single or bulk upload. Strictly prohibit from
+            uploading company data or other band files
+          </p>
+        </Dragger>
       </div>
-      <button
-        style={{
-          cursor: "pointer",
-          marginTop: "5vh",
-          borderRadius: "5px",
-          border: "1px solid #fff",
-          width: "10rem",
-          height: "2rem",
-        }}
-        disabled={fileList.length === 0}
+      <Popover
+        placement="bottomLeft"
+        style={{ backgroundColor: "#000" }}
+        content={content}
+        title="Tips"
       >
-        CONFIRM
-      </button>
+        <button
+          style={{
+            marginTop: "8vh",
+            width: "10rem",
+            height: "3rem",
+          }}
+          onClick={() => uploadData()}
+          disabled={fileList.length === 0}
+        >
+          CONFIRM
+        </button>
+      </Popover>
     </div>
   );
 };
