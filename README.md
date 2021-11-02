@@ -1,3 +1,22 @@
+# How to start
+First you must have Node.js or Yarn in your computer environment, then you should install all dependencies by run `npm install` (if you have Node.js) or `yarn add` (if you have Yarn).
+
+I suggest you download both Node.js and Yarn, they are helpful if you want to learn this project deeply.
+
+After install devs, we could start this app. Run `npm start` or `yarn start`. 
+
+## Brief introduction to commonly used commands:
+
+`npm install` or `yarn add`  <br/>
+Install all devs signed in package.json <br/>
+`npm start` or `yarn start` <br/>
+Start local web server in [http://localhost:3000](http://localhost:3000), it just works for development. <br/>
+`npm run build` or `yarn build` <br/>
+Package all files in your project and output the rel product version in 'build' folder.
+# More details can be found below
+ 
+***
+ 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
