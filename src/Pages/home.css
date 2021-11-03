@@ -44,6 +44,7 @@ button::before {
 button:hover::before {
     transform: scaleX(1);
     transform-origin: bottom left;
+    
 }
 
 button::before {
@@ -66,8 +67,8 @@ button::before {
     border-radius: 20px;
 }
 
-/* button:hover{
+button:hover{
     background-color: #fff;
     border:1px solid #000;
     color: #000;
-} */
+}

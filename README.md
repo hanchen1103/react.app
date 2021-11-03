@@ -12,7 +12,7 @@ Install all devs signed in package.json <br/>
 `npm start` or `yarn start` <br/>
 Start local web server in [http://localhost:3000](http://localhost:3000), it just works for development. <br/>
 `npm run build` or `yarn build` <br/>
-Package all files in your project and output the rel product version in 'build' folder.
+Package all files in your project and output the rel product version in 'public' folder.
 # More details can be found below
  
 ***
