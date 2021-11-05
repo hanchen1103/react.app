@@ -12,6 +12,7 @@ const Home = () => {
     setPwd(e.target.value);
   };
   const loginNow = () => {
+    history.push("/err");
     let data = {
       name: username,
       password: pwd,
@@ -38,7 +39,15 @@ const Home = () => {
   };
   return (
     <div className={"mainContainerContent"}>
-      
+      <h1
+        style={{
+          alignSelf: "flex-start",
+          marginLeft: "19vw",
+          marginBottom: "5vh",
+        }}
+      >
+        LOGIN
+      </h1>
       <h3 style={{ alignSelf: "flex-start", marginLeft: "19vw" }}> Username</h3>
       <input
         className={"inputLogin"}
@@ -55,13 +64,16 @@ const Home = () => {
         Password
       </h3>
       <input
+        type="password"
         className={"inputLogin"}
         placeholder="PASSWORD"
         onChange={(value) => updatePwd(value)}
       />
-      <button className={"inputLoginBtn"} onClick={() => loginNow()}>
-        LOGIN
-      </button>
+      <div style={{width:'10rem',height:'3rem'}}>
+        <button className={"inputLoginBtn"} onClick={() => loginNow()}>
+          LOGIN
+        </button>
+      </div>
     </div>
   );
 };

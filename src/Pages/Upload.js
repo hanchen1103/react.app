@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Upload, message, Button, Popover } from "antd";
+import { Upload, message, Popover, Spin } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
 const { Dragger } = Upload;
@@ -42,7 +42,10 @@ const UploadPage = () => {
       },
       body: formdata,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        res.json();
+        setUploading(false);
+      })
       .then((json) => {
         console.log(json);
         if (json.code && json.code === 0) message.success("Post success!");
@@ -113,6 +116,7 @@ const UploadPage = () => {
           </p>
         </Dragger>
       </div>
+
       <Popover
         placement="bottomLeft"
         style={{ backgroundColor: "#000" }}
@@ -131,6 +135,11 @@ const UploadPage = () => {
           CONFIRM
         </button>
       </Popover>
+      <Spin
+        size="large"
+        spinning={uploading}
+        style={{ position: "absolute", left: "20vw", bottom: "18vh" }}
+      />
     </div>
   );
 };

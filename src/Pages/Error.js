@@ -9,10 +9,11 @@ const Error = () => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        minHeight:'100vh'
+        height:'70vh',
+        width:'100%',
       }}
     >
-      <h3 style={{marinRight:'5vw'}}>404 NOT FOUND RESOURCES!</h3>
+      <h1 style={{marinRight:'5vw'}}>404! NOT FOUND RESOURCES!</h1>
       <img style={{marginLeft:'5vw'}} src={errorImage} alt="error-img" />
     </div>
   );

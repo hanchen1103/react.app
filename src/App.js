@@ -1,18 +1,15 @@
-import React  from "react";
-import 'antd/dist/antd.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import React from "react";
+import "antd/dist/antd.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Message from "./Pages/Message";
 import Error from "./Pages/Error";
 import UploadPage from "./Pages/Upload";
+import Test from "./Pages/Test.jsx";
 function App() {
   return (
     <Router>
-      <div id={'App'}>
+      <div id={"App"}>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -22,6 +19,9 @@ function App() {
           </Route>
           <Route path="/upload">
             <UploadPage />
+          </Route>
+          <Route path="/test">
+            <Test />
           </Route>
           <Route path="*">
             <Error />
