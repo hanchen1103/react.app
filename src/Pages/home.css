@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 70vh;
+    overflow: hidden !important;
 }
 
 .inputLogin {
@@ -19,26 +20,52 @@
     border: 2px groove #cc5959;
 }
 
-.inputLoginBtn {
-    width: 10rem;
-    height: 3rem;
-    margin-top: 8vh;
+#decContainer{
+    transition: all 4s;
+    width: 50vw;
+    height: 20vh;
+    position: absolute;
+    top: 1vh;
+    right: 0vw;
+    transform: rotate3d(1,1,0, 25deg);
 }
 
-button {
-    cursor: pointer;
-    outline: none !important;
-    border-radius: 5px;
-    border: 1.5px solid rgba(255, 255, 255, .9);
-    color: #fff;
-    font-weight: bold;
-    background-color: #000;
-    text-transform: uppercase;
-    transition: all 0.5s !important;
+#loginCard {
+    width: 50vw;
+    height: 40vw;
+    position: absolute;
+    right: -5vw;
+    top: 1vh;
+    z-index: 1;
 }
 
-button:hover{
-    background-color: #fff;
-    border:1px solid #000;
-    color: #000;
+#loginCardDec {
+    width: 40vh;
+    height: 6vh;
+    background-color: #d20d0d;
+    position: absolute;
+    top: 25vh;
+    right: 8vw;
+    transform: rotate(90deg);
+    z-index: 0;
+    transition: all 1s;
+    box-shadow: 2px 2px 5px #000;
+    animation: 5s ease-in-out 0s infinite alternate moveSilks;
 }
+
+#loginCardDec::before{
+    content: " ";
+
+}
+
+@keyframes moveSilks {
+    from{
+        transform: rotate(90deg);
+    }
+    to{
+        transform: rotate(100deg);
+    }
+}
+
+
+
