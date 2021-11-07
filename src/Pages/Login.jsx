@@ -60,7 +60,7 @@ const Login = () => {
           marginBottom: "5vh",
         }}
       >
-        LOGIN
+        LOGINgit@github.com:ShawnaZhou/Tutorials.git
       </h1>
       <h3 style={{ alignSelf: "flex-start", marginLeft: "19vw" }}> Username</h3>
       <input
