@@ -2,6 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Initial from "./Components/Initial.jsx";
+import {QueryClient,QueryClientProvider} from 'react-query';
 import Login from "./Pages/Login.jsx";
 import Home from "./Pages/Home.jsx";
 import Message from "./Pages/Message.jsx";
@@ -10,8 +11,16 @@ import UploadPage from "./Pages/Upload.jsx";
 import Background from "./Components/Background.jsx";
 import Test from "./Pages/Test.jsx";
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  });
   return (
     <Router>
+      <QueryClientProvider client={queryClient}>
       <Background />
       <div id={"App"}>
         <div id={"AppBack"} />
@@ -37,6 +46,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+      </QueryClientProvider>
     </Router>
   );
 }

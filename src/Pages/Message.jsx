@@ -1,25 +1,18 @@
-import React, { useState, useEffect, useQueryClient } from "react";
+import React, { useState, useEffect } from "react";
 import { message } from "antd";
+import {useQueryClient} from 'react-query';
 
 const Message = () => {
-  const QueryClient = useQueryClient();
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: Infinity,
-      },
-    },
-  });
-
+  const queryClient = useQueryClient();
   const [msg, setMsg] = useState({});
   const [initial, setInitia] = useState(true);
-
+  const userId = sessionStorage.getItem('userId');
   useEffect(() => {
-
     if (initial) {
       Initial();
     }
-    const websocket = new WebSocket("");
+    const websocket = new WebSocket(" ");
+
     websocket.onopen = () => {
       console.log("connected");
     };
@@ -33,13 +26,22 @@ const Message = () => {
       });
     };
 
+    websocket.onerror = (event) =>{
+      message.error(event);
+      console.log('websocket err: ',event);
+    }
+
+    websocket.onclose = (event) =>{
+      message.warning('websocket is closed');
+    }
+
     return () => {
       websocket.close();
     };
   }, [queryClient]);
 
   const Initial = () => {
-    setInitia(false);
+    setInitia(false); 
     getData();
   };
 

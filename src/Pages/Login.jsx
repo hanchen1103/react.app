@@ -27,26 +27,27 @@ const Login = () => {
       password: pwd,
     };
     console.log(data);
-    fetch("localhost:8080/login", {
+    fetch("http://127.0.0.1:8080/login", {
       mode: "cors",
       method: "POST",
       headers: {
-        "Content-type": "application:/json",
+        "Content-type": "multipart/form-data; boundary=<calculated when request is sent>",
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
-        if (json.code && json.code === 0) {
-          history.push("/message");
+        if (json.code && json.code === 200) {
+          sessionStorage.setItem('user',json.user);
+          history.push("/upload");
           return;
         }
         else {
-          message.error('')
+          message.error('Login failed!')
         }
       })
-      .catch((err) => console.log("Request Failed", err));
+      .catch((err) => message.error('Login failed! Something wrong with your network!'));
   };
   return (
     <div className={"mainContainerContent"}>

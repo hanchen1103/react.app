@@ -6,9 +6,10 @@ const { Dragger } = Upload;
 
 const UploadPage = () => {
   const [uploading, setUploading] = useState(false);
+  const user = sessionStorage.getItem('user');
   const [name, setName] = useState("");
   const [msg, setMsg] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const [file, setFile] = useState({});
   const content = (
     <div>
       <p>You must choose one image!</p>
@@ -17,7 +18,7 @@ const UploadPage = () => {
   const onChange = (info) => {
     const { status } = info.file;
     if (status !== "uploading") {
-      console.log(info.file, info.fileList);
+      console.log(info.file);
     }
     if (status === "done") {
       message.success(`${info.file.name} file add successfully.`);
@@ -30,15 +31,16 @@ const UploadPage = () => {
   };
   const uploadData = () => {
     let formdata = new FormData();
-    formdata.append("name", name);
-    formdata.append("msg", msg);
-    formdata.append("file", fileList);
+    // formdata.append("name", name);
+    // formdata.append("msg", msg);
+    formdata.append("userId",user.id);
+    formdata.append("file", file);
     setUploading(true);
-    fetch("", {
+    fetch("http://127.0.0.1:8080/upload", {
       mode: "cors",
       method: "POST",
       headers: {
-        "Content-type": "application:/x-www-form-urlencoded:charset=UTF-8",
+        "Content-type": "multipart/form-data;boundary=<calculated when request is sent>",
       },
       body: formdata,
     })
@@ -56,10 +58,10 @@ const UploadPage = () => {
       });
   };
   const onRemove = () => {
-    setFileList([]);
+    setFile({});
   };
   const beforeUpload = (file) => {
-    setFileList(file);
+    setFile(file);
     console.log(file);
     return false;
   };
@@ -110,8 +112,7 @@ const UploadPage = () => {
             Click or drag file to this area to upload
           </p>
           <p className="ant-upload-hint">
-            Support for a single upload. Strictly prohibit from
-            uploading company data or other band files
+            Support for a single upload. 
           </p>
         </Dragger>
       </div>
@@ -129,7 +130,7 @@ const UploadPage = () => {
             height: "3rem",
           }}
           onClick={() => uploadData()}
-          disabled={fileList.length === 0}
+          disabled={file.length === 0}
         >
           CONFIRM
         </button>
