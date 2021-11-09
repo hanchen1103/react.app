@@ -1,17 +1,21 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Initial from "./Components/Initial.jsx";
 import Login from "./Pages/Login.jsx";
 import Home from "./Pages/Home.jsx";
 import Message from "./Pages/Message.jsx";
 import Error from "./Pages/Error.jsx";
 import UploadPage from "./Pages/Upload.jsx";
+import Background from "./Components/Background.jsx";
 import Test from "./Pages/Test.jsx";
 function App() {
   return (
     <Router>
+      <Background />
       <div id={"App"}>
         <div id={"AppBack"} />
+        <Initial />
         <Switch>
           <Route exact path="/">
             <Login />

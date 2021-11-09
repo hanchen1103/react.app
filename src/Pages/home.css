@@ -17,7 +17,7 @@
 }
 
 .inputLogin:focus {
-    border: 2px groove #cc5959;
+    border: 2px groove #cc5959f3;
 }
 
 #decContainer{

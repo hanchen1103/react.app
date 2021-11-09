@@ -4,7 +4,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: lightblue;
-  background-image: url("./assets/mainBack.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -23,7 +22,6 @@ code {
   padding: 30px;
   min-height: 80vh;
   min-width: 80vw;
-  
 }
 #AppBack{
   position: absolute;
@@ -33,7 +31,8 @@ code {
   height: 80vh;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
-  border: 1px solid rgba(255, 0, 0, .5) ;
+  border: 1px solid rgba(25, 25, 20, .5) ;
+  box-shadow: inset 1px 1px 5px rgba(25, 25, 20, .5) , inset -1px -1px 5px rgba(25, 25, 20, .5);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: -1;

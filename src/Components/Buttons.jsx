@@ -3,7 +3,6 @@ import React from "react";
 import "./Buttons.css";
 
 const Buttons = (props) => {
-  console.log(props);
   const id = props.id;
   return (
     <div style={{width:props.width,height:props.height}} onClick={()=>props.onClick()}>

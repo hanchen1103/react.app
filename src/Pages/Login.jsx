@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./home.css";
 import { useHistory } from "react-router-dom";
-import { Spin } from "antd";
-import { LoadingOutlined } from '@ant-design/icons';
+import { message, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import Button from "../Components/Buttons.jsx";
 import pic from "../assets/loginDec.png";
 
@@ -22,33 +22,46 @@ const Login = () => {
 
   const loginNow = () => {
     setLoginStatus(true);
-    // let data = {
-    //   name: username,
-    //   password: pwd,
-    // };
-    // console.log(data);
-    // fetch("", {
-    //   mode: "cors",
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application:/x-www-form-urlencoded:charset=UTF-8",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     console.log(json);
-    //     if (json.code && json.code === 0) {
-    //       history.push("/message");
-    //       return;
-    //     }
-    //     history.push("/err");
-    //   })
-    //   .catch((err) => console.log("Request Failed", err));
+    let data = {
+      account: username,
+      password: pwd,
+    };
+    console.log(data);
+    fetch("localhost:8080/login", {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        "Content-type": "application:/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if (json.code && json.code === 0) {
+          history.push("/message");
+          return;
+        }
+        else {
+          message.error('')
+        }
+      })
+      .catch((err) => console.log("Request Failed", err));
   };
   return (
     <div className={"mainContainerContent"}>
-      <Spin spinning={loginStatus} indicator={spinIcon} size="large" color='red' style={{position:'absolute',bottom:'12vh',right:'12vw',color:'red'}}/>
+      <Spin
+        spinning={loginStatus}
+        indicator={spinIcon}
+        size="large"
+        color="red"
+        style={{
+          position: "absolute",
+          bottom: "12vh",
+          right: "12vw",
+          color: "red",
+        }}
+      />
       <div id="decContainer" className={loginStatus ? "animation" : null}>
         <img id={"loginCard"} src={pic} alt={""} />
         <span id={"loginCardDec"} />
@@ -60,7 +73,7 @@ const Login = () => {
           marginBottom: "5vh",
         }}
       >
-        LOGINgit@github.com:ShawnaZhou/Tutorials.git
+        LOGIN
       </h1>
       <h3 style={{ alignSelf: "flex-start", marginLeft: "19vw" }}> Username</h3>
       <input

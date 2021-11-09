@@ -94,9 +94,8 @@ const UploadPage = () => {
           placeholder="MSGS YOU WANT TO SAY"
         />
       </div>
-      <div style={{ width: "40vw" }}>
+      <div style={{ width: "40vw" ,height:'20vh'}}>
         <h3> Upload Avatar</h3>
-
         <Dragger
           onRemove={() => onRemove()}
           onChange={(info) => onChange(info)}
@@ -111,7 +110,7 @@ const UploadPage = () => {
             Click or drag file to this area to upload
           </p>
           <p className="ant-upload-hint">
-            Support for a single or bulk upload. Strictly prohibit from
+            Support for a single upload. Strictly prohibit from
             uploading company data or other band files
           </p>
         </Dragger>
